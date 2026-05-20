@@ -1,0 +1,36 @@
+async function loadHistory() {
+
+    const email =
+    document.getElementById("email").value;
+
+    const response = await fetch(
+        `${backendURL}/history/${email}`
+    );
+
+    const data = await response.json();
+
+    const table =
+    document.getElementById("historyTable");
+
+    table.innerHTML = "";
+
+    data.forEach(log => {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${log.browser}</td>
+
+            <td>${log.os}</td>
+
+            <td>${log.device}</td>
+
+            <td>${log.ip}</td>
+
+            <td>${log.time}</td>
+
+        </tr>
+        `;
+    });
+}
